@@ -1,0 +1,174 @@
+from email import message
+import pyautogui
+import selenium
+
+from selenium.webdriver.common.keys import Keys
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait 
+from selenium.webdriver.support import expected_conditions as EC
+
+import time
+
+server = input('Server:  ')
+channel = input('Channel:  ')
+
+path = 'C:\Program Files (x86)\chromedriver.exe'
+driver = webdriver.Chrome(path)
+
+driver.get("https://discord.com/login")
+driver.maximize_window()
+
+search = driver.find_element_by_class_name("button-f2h6uQ")
+search.click()
+
+search = driver.find_element_by_name('email')
+search.send_keys('put ur email here wocka')
+search = driver.find_element_by_name('password')
+search.send_keys('and ur password here')
+search.send_keys(Keys.RETURN)
+
+
+
+
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, '//*[@id="app-mount"]/div[2]/div/div[2]/div/div[1]/nav/ul/div[2]/div[3]'))
+    )
+except:
+    driver.quit()
+
+
+
+
+
+search = driver.find_elements_by_class_name('blobContainer-ikKyFs')
+
+servers = []
+channels = []
+
+for element in search:
+    servers.append(element.get_attribute('data-dnd-name'))
+
+
+search[servers.index(server)].click()
+
+
+driver.execute_script("document.body.style.zoom='50%'")
+
+search = driver.find_elements_by_class_name('containerDefault-YUSmu3')
+
+
+
+for element in search:
+    channels.append(element.get_attribute('data-dnd-name'))
+
+
+
+
+search = driver.find_elements_by_class_name('mainContent-20q_Hp')
+
+driver.execute_script("arguments[0].click();", search[channels.index(channel)+1])
+
+
+time.sleep(2)
+
+messages = driver.find_elements_by_class_name('contents-2MsGLg')
+sent = []
+
+for message in messages:
+    print(message.text.lower().strip() + '\n\n')
+```python
+from email import message
+import pyautogui
+import selenium
+
+from selenium.webdriver.common.keys import Keys
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait 
+from selenium.webdriver.support import expected_conditions as EC
+
+import time
+
+server = input('Server:  ')
+channel = input('Channel:  ')
+
+path = 'C:\Program Files (x86)\chromedriver.exe'
+driver = webdriver.Chrome(path)
+
+driver.get("https://discord.com/login")
+driver.maximize_window()
+
+search = driver.find_element_by_class_name("button-f2h6uQ")
+search.click()
+
+search = driver.find_element_by_name('email')
+search.send_keys('put ur email here wocka')
+search = driver.find_element_by_name('password')
+search.send_keys('and ur password here')
+search.send_keys(Keys.RETURN)
+
+
+
+
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, '//*[@id="app-mount"]/div[2]/div/div[2]/div/div[1]/nav/ul/div[2]/div[3]'))
+    )
+except:
+    driver.quit()
+
+
+
+
+
+search = driver.find_elements_by_class_name('blobContainer-ikKyFs')
+
+servers = []
+channels = []
+
+for element in search:
+    servers.append(element.get_attribute('data-dnd-name'))
+
+
+search[servers.index(server)].click()
+
+
+driver.execute_script("document.body.style.zoom='50%'")
+
+search = driver.find_elements_by_class_name('containerDefault-YUSmu3')
+
+
+
+for element in search:
+    channels.append(element.get_attribute('data-dnd-name'))
+
+
+
+
+search = driver.find_elements_by_class_name('mainContent-20q_Hp')
+
+driver.execute_script("arguments[0].click();", search[channels.index(channel)+1])
+
+
+time.sleep(2)
+
+messages = driver.find_elements_by_class_name('contents-2MsGLg')
+sent = []
+
+for message in messages:
+    print(message.text.lower().strip() + '\n\n')
+
+'''
+
+search = driver.find_elements_by_class_name('button-3bklZh')
+
+driver.execute_script("arguments[0].click();", search[sent.index(message)])
+
+driver.execute_script("document.body.style.zoom='100%'")
+
+
+'''
